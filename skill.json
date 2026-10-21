@@ -1,0 +1,67 @@
+{
+  "name": "genpark-agentic-commerce-rma-reverse-logistics-triage-skill",
+  "version": "1.0.0",
+  "title": "RMA Reverse Logistics Intelligent Triage & Salvage Router Skill",
+  "description": "RMA disposition router, return shipping cost vs salvage liquidation value, restocking fee calculator, and fraudulent return risk scorer. Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "linkedin": "https://www.linkedin.com/company/92955550",
+  "category": "agentic-commerce",
+  "topics": [
+    "rma",
+    "reverse-logistics",
+    "return-triage",
+    "liquidation",
+    "agentic-commerce",
+    "model-context-protocol",
+    "genpark"
+  ],
+  "tools": [
+    {
+      "name": "evaluate_return_disposition_economics",
+      "description": "Determine optimal return disposition (Return-to-Stock, Liquidate, Customer Keep) based on net recovery economics.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "item_retail_price_usd": {
+            "type": "number"
+          },
+          "reverse_shipping_quote_usd": {
+            "type": "number"
+          },
+          "refurbish_cost_usd": {
+            "type": "number"
+          },
+          "secondary_market_salvage_pct": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "item_retail_price_usd",
+          "reverse_shipping_quote_usd"
+        ]
+      }
+    },
+    {
+      "name": "score_return_abuse_fraud_risk",
+      "description": "Score probability of wardrobing, brick-in-box, or return fraud based on customer telemetry.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "customer_return_rate_pct": {
+            "type": "number"
+          },
+          "rma_reason_code": {
+            "type": "string"
+          },
+          "order_age_days": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "customer_return_rate_pct",
+          "rma_reason_code"
+        ]
+      }
+    }
+  ]
+}
